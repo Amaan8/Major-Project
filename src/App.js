@@ -1,15 +1,15 @@
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
-import './App.css';
+import CartProvider from './store/CartProvider';
 
 function App() {
   return (
-    <>
+    <CartProvider>
       <Header />    
       <Main />
       <Footer />
-    </>
+    </CartProvider>
   );
 }
 
