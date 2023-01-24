@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import Cart from "./Cart";
 import CartContext from "../store/cart-context";
 
@@ -29,12 +30,12 @@ const Header = () => {
               <Nav.Link href="#" className="ms-5">
                 Home
               </Nav.Link>
-              <Nav.Link href="#" className="ms-5">
+              <NavLink to="/" className="nav-link ms-5">
                 Store
-              </Nav.Link>
-              <Nav.Link href="#" className="ms-5">
+              </NavLink>
+              <NavLink to="/about" className="nav-link ms-5">
                 About
-              </Nav.Link>
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
           <Button variant="info" onClick={showCart}>
