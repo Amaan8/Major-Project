@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Card, Col, Row, Button } from "react-bootstrap";
+import { Card, Col, Row, Container, Button } from "react-bootstrap";
 import CartContext from "../store/cart-context";
 
 const Main = () => {
@@ -47,8 +47,8 @@ const Main = () => {
   };
 
   return (
-    <>
-      <Row xs={1} md={2} className="g-4 w-50 mx-auto py-5">
+    <Container className="w-50 mx-auto py-5">
+      <Row xs={1} md={2} className="g-4">
         {productsArr.map((item) => (
           <Col key={item.id}>
             <Card border="white">
@@ -73,7 +73,7 @@ const Main = () => {
           </Col>
         ))}
       </Row>
-    </>
+    </Container>
   );
 };
 
