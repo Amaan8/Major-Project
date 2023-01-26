@@ -6,7 +6,6 @@ import CartContext from "../store/cart-context";
 
 const Header = () => {
   const [cartState, setCartState] = useState(false);
-  const [cartButton, setCartButton] = useState(false);
   const cartCtx = useContext(CartContext);
 
   const showCart = () => {
@@ -17,14 +16,6 @@ const Header = () => {
     setCartState(false);
   };
 
-  const showCartButton = () => {
-    setCartButton(true);
-  };
-
-  const hideCartButton = () => {
-    setCartButton(false);
-  };
-
   const numberOfCartItems = cartCtx.items.reduce((curNumber, item) => {
     return curNumber + item.quantity;
   }, 0);
@@ -32,47 +23,29 @@ const Header = () => {
   return (
     <>
       <Navbar sticky="top" bg="dark" expand="md" variant="dark">
-        <Container fluid className="">
+        <Container fluid>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            {cartButton && <span className="mx-3 px-4"></span>}
             <Nav className="mx-auto fs-5">
-              <NavLink
-                to="/"
-                className="nav-link px-4"
-                onClick={hideCartButton}
-              >
+              <span className="mx-5"></span>
+              <NavLink to="/" className="nav-link px-4">
                 Home
               </NavLink>
-              <NavLink
-                to="/store"
-                className="nav-link px-4"
-                onClick={showCartButton}
-              >
+              <NavLink to="/store" className="nav-link px-4">
                 Store
               </NavLink>
-              <NavLink
-                to="/about"
-                className="nav-link px-4"
-                onClick={hideCartButton}
-              >
+              <NavLink to="/about" className="nav-link px-4">
                 About
               </NavLink>
-              <NavLink
-                to="/contact"
-                className="nav-link px-4"
-                onClick={hideCartButton}
-              >
+              <NavLink to="/contact" className="nav-link px-4">
                 Contact
               </NavLink>
             </Nav>
           </Navbar.Collapse>
-          {cartButton && (
-            <Button variant="info" onClick={showCart}>
-              <span>Cart</span>
-              <span className="ms-2 bg-white p-2">{numberOfCartItems}</span>
-            </Button>
-          )}
+          <Button variant="info" onClick={showCart}>
+            <span>Cart</span>
+            <span className="ms-2 bg-white p-2">{numberOfCartItems}</span>
+          </Button>
         </Container>
       </Navbar>
       {cartState && <Cart onClose={closeCart} />}
