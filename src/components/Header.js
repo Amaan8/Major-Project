@@ -31,7 +31,7 @@ const Header = () => {
 
   return (
     <>
-      <Navbar sticky="top" bg="dark" expand="sm" variant="dark">
+      <Navbar sticky="top" bg="dark" expand="md" variant="dark">
         <Container fluid className="">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -39,24 +39,31 @@ const Header = () => {
             <Nav className="mx-auto fs-5">
               <NavLink
                 to="/"
-                className="nav-link px-5"
+                className="nav-link px-4"
                 onClick={hideCartButton}
               >
                 Home
               </NavLink>
               <NavLink
                 to="/store"
-                className="nav-link px-5"
+                className="nav-link px-4"
                 onClick={showCartButton}
               >
                 Store
               </NavLink>
               <NavLink
                 to="/about"
-                className="nav-link px-5"
+                className="nav-link px-4"
                 onClick={hideCartButton}
               >
                 About
+              </NavLink>
+              <NavLink
+                to="/contact"
+                className="nav-link px-4"
+                onClick={hideCartButton}
+              >
+                Contact
               </NavLink>
             </Nav>
           </Navbar.Collapse>
