@@ -14,8 +14,23 @@ const Header = () => {
     authCtx.logout();
   };
 
-  const showCart = () => {
+  const showCart = async () => {
     setCartState(true);
+    const email = localStorage.getItem("email");
+    const user = email.substring(0, email.indexOf("."));
+    const response = await fetch(
+      `https://ecommerce-project-6271e-default-rtdb.firebaseio.com/cart-${user}.json`
+    );
+    const data = await response.json();
+    Object.keys(data).map((item) =>
+      cartCtx.addItem({
+        id: item.id,
+        title: item.title,
+        quantity: 1,
+        price: item.price,
+        imageUrl: item.imageUrl,
+      })
+    );
   };
 
   const closeCart = () => {

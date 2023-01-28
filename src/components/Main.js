@@ -14,7 +14,23 @@ const Main = (props) => {
       price: item.price,
       imageUrl: item.imageUrl,
     });
+
+    addCartItem(item);
   };
+
+  async function addCartItem(item) {
+    const email = localStorage.getItem("email");
+    const user = email.substring(0, email.indexOf("."));
+    const response = await fetch(
+      `https://ecommerce-project-6271e-default-rtdb.firebaseio.com/cart-${user}.json`,
+      {
+        method: "POST",
+        body: JSON.stringify(item),
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+  }
 
   return (
     <Container className="w-50 mx-auto py-5">
