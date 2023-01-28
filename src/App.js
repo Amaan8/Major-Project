@@ -1,4 +1,5 @@
-import { Route, Switch } from "react-router-dom";
+import { useContext } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Footer from "./components/Footer";
@@ -7,8 +8,12 @@ import About from "./components/About";
 import Home from "./components/Home";
 import Contact from "./components/Contact";
 import Product from "./components/Product";
+import Login from "./components/Login";
+import AuthContext from "./store/auth-context";
 
 function App() {
+  const authCtx = useContext(AuthContext);
+
   const productsArr = [
     {
       id: 1,
@@ -58,6 +63,14 @@ function App() {
         </Route>
         <Route path="/contact">
           <Contact />
+        </Route>
+        {!authCtx.isLoggedIn && (
+          <Route path="/login">
+            <Login />
+          </Route>
+        )}
+        <Route path="*">
+          <Redirect to="/" />
         </Route>
       </Switch>
       <Footer />

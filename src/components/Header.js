@@ -1,12 +1,18 @@
 import { useState, useContext } from "react";
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import Cart from "./Cart";
 import CartContext from "../store/cart-context";
+import AuthContext from "../store/auth-context";
 
 const Header = () => {
   const [cartState, setCartState] = useState(false);
   const cartCtx = useContext(CartContext);
+  const authCtx = useContext(AuthContext);
+
+  const logoutHandler = () => {
+    authCtx.logout();
+  };
 
   const showCart = () => {
     setCartState(true);
@@ -40,6 +46,20 @@ const Header = () => {
               <NavLink to="/contact" className="nav-link px-4">
                 Contact
               </NavLink>
+              {!authCtx.isLoggedIn && (
+                <Link to="/login" className="nav-link px-4">
+                  Login
+                </Link>
+              )}
+              {authCtx.isLoggedIn && (
+                <Link
+                  to="/login"
+                  className="nav-link px-4"
+                  onClick={logoutHandler}
+                >
+                  Logout
+                </Link>
+              )}
             </Nav>
           </Navbar.Collapse>
           <Button variant="info" onClick={showCart}>
