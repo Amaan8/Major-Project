@@ -34,6 +34,7 @@ const Contact = () => {
     <Container className="py-5">
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
+          <h3 className="text-center pb-3">CONTACT US</h3>
           <Form onSubmit={submitHandler}>
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label>Name</Form.Label>

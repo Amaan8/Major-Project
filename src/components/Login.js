@@ -65,7 +65,7 @@ const Login = () => {
     <Container className="py-5">
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
-          <h3>{isLogin ? "Login" : "Sign Up"}</h3>
+          <h3 className="text-center pb-3">{isLogin ? "Login" : "Sign Up"}</h3>
           <Form onSubmit={submitHandler}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>

@@ -50,10 +50,14 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
+        <Route path="/home">
           <Home />
         </Route>
         <Route exact path="/store">
-          <Main products={productsArr} />
+          {authCtx.isLoggedIn && <Main products={productsArr} />}
+          {!authCtx.isLoggedIn && <Redirect to="/login" />}
         </Route>
         <Route path="/store/:productId">
           <Product products={productsArr} />

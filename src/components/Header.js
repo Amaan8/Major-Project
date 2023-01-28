@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Cart from "./Cart";
 import CartContext from "../store/cart-context";
 import AuthContext from "../store/auth-context";
@@ -34,7 +34,7 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mx-auto fs-5">
               <span className="mx-5"></span>
-              <NavLink to="/" className="nav-link px-4">
+              <NavLink to="/home" className="nav-link px-4">
                 Home
               </NavLink>
               <NavLink to="/store" className="nav-link px-4">
@@ -47,18 +47,18 @@ const Header = () => {
                 Contact
               </NavLink>
               {!authCtx.isLoggedIn && (
-                <Link to="/login" className="nav-link px-4">
+                <NavLink to="/login" className="nav-link px-4">
                   Login
-                </Link>
+                </NavLink>
               )}
               {authCtx.isLoggedIn && (
-                <Link
+                <NavLink
                   to="/login"
                   className="nav-link px-4"
                   onClick={logoutHandler}
                 >
                   Logout
-                </Link>
+                </NavLink>
               )}
             </Nav>
           </Navbar.Collapse>
