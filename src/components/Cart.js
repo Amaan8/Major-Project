@@ -1,15 +1,9 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { Offcanvas, Table, Button } from "react-bootstrap";
 import CartContext from "../store/cart-context";
 
 const Cart = (props) => {
-  const [changeQuantity, setChangeQuantity] = useState("");
   const cartCtx = useContext(CartContext);
-
-  const changeHandler = (e) => {
-    setChangeQuantity(e.target.value);
-    console.log(changeQuantity);
-  };
 
   const cartItemRemove = (item) => {
     cartCtx.removeItem(item.id);
@@ -46,12 +40,7 @@ const Cart = (props) => {
                   </td>
                   <td>{item.price}</td>
                   <td className="">
-                    <input
-                      type="number"
-                      value={item.quantity}
-                      onChange={changeHandler}
-                      className="w-100 mb-2"
-                    />
+                    <p className="text-center">{item.quantity}</p>
                     <Button
                       variant="danger"
                       onClick={cartItemRemove.bind(null, item)}

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Card, Col, Row, Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import CartContext from "../store/cart-context";
@@ -6,7 +6,7 @@ import CartContext from "../store/cart-context";
 const Main = (props) => {
   const cartCtx = useContext(CartContext);
 
-  const clickHandler = (item) => {
+  const addItems = (item) => {
     cartCtx.addItem({
       id: item.id,
       title: item.title,
@@ -14,7 +14,24 @@ const Main = (props) => {
       price: item.price,
       imageUrl: item.imageUrl,
     });
+  };
 
+  useEffect(() => {
+    getItems();
+  }, []);
+
+  const getItems = async () => {
+    const emailId = localStorage.getItem("email");
+    const user = emailId.substring(0, emailId.indexOf("."));
+    const res = await fetch(
+      `https://ecommerce-project-6271e-default-rtdb.firebaseio.com/cart-${user}.json`
+    );
+    const data = await res.json();
+    Object.values(data).map((item) => addItems(item));
+  };
+
+  const clickHandler = (item) => {
+    addItems(item);
     addCartItem(item);
   };
 

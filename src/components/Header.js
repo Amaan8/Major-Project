@@ -1,4 +1,4 @@
-import { useState, useContext, useCallback } from "react";
+import { useState, useContext } from "react";
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import Cart from "./Cart";
@@ -11,31 +11,13 @@ const Header = (props) => {
   const authCtx = useContext(AuthContext);
 
   const logoutHandler = () => {
+    cartCtx.items.map((item) => cartCtx.removeItem(item.id));
     authCtx.logout();
   };
 
-  const showCart = useCallback(async () => {
+  const showCart = () => {
     setCartState(true);
-    const email = localStorage.getItem("email");
-    const user = email.substring(0, email.indexOf("."));
-    const response = await fetch(
-      `https://ecommerce-project-6271e-default-rtdb.firebaseio.com/cart-${user}.json`
-    );
-    const data = await response.json();
-    for (const item in data) {
-      const response = await fetch(
-        `https://ecommerce-project-6271e-default-rtdb.firebaseio.com/cart-${user}/${item}.json`
-      );
-      const data = await response.json();
-      cartCtx.addItem({
-        id: data.id,
-        title: data.title,
-        quantity: 1,
-        price: data.price,
-        imageUrl: data.imageUrl,
-      });
-    }
-  }, [cartCtx]);
+  };
 
   const closeCart = () => {
     setCartState(false);
