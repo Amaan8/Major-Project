@@ -1,15 +1,16 @@
-import { useContext } from "react";
+import React, { useContext, Suspense } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Header from "./components/Header";
-import Main from "./components/Main";
 import Footer from "./components/Footer";
 import CartProvider from "./store/CartProvider";
-import About from "./components/About";
 import Home from "./components/Home";
-import Contact from "./components/Contact";
 import Product from "./components/Product";
 import Login from "./components/Login";
 import AuthContext from "./store/auth-context";
+
+const Main = React.lazy(() => import("./components/Main"));
+const About = React.lazy(() => import("./components/About"));
+const Contact = React.lazy(() => import("./components/Contact"));
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -48,35 +49,37 @@ function App() {
   return (
     <CartProvider>
       <Header />
-      <Switch>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-        <Route path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/store">
-          {authCtx.isLoggedIn && <Main products={productsArr} />}
-          {!authCtx.isLoggedIn && <Redirect to="/login" />}
-        </Route>
-        <Route path="/store/:productId">
-          <Product products={productsArr} />
-        </Route>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/contact">
-          <Contact />
-        </Route>
-        {!authCtx.isLoggedIn && (
-          <Route path="/login">
-            <Login />
+      <Suspense fallback={<p className="text-center py-5">Loading...</p>}>
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/home" />
           </Route>
-        )}
-        <Route path="*">
-          <Redirect to="/" />
-        </Route>
-      </Switch>
+          <Route path="/home">
+            <Home />
+          </Route>
+          <Route exact path="/store">
+            {authCtx.isLoggedIn && <Main products={productsArr} />}
+            {!authCtx.isLoggedIn && <Redirect to="/login" />}
+          </Route>
+          <Route path="/store/:productId">
+            <Product products={productsArr} />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/contact">
+            <Contact />
+          </Route>
+          {!authCtx.isLoggedIn && (
+            <Route path="/login">
+              <Login />
+            </Route>
+          )}
+          <Route path="*">
+            <Redirect to="/" />
+          </Route>
+        </Switch>
+      </Suspense>
       <Footer />
     </CartProvider>
   );

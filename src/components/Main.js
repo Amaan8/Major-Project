@@ -18,6 +18,7 @@ const Main = (props) => {
 
   useEffect(() => {
     getItems();
+    // eslint-disable-next-line
   }, []);
 
   const getItems = async () => {
