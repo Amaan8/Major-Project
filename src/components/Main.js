@@ -57,10 +57,10 @@ const Main = (props) => {
   };
 
   return (
-    <Container className="w-50 mx-auto py-5">
-      <Row xs={1} md={2} className="g-4">
+    <Container fluid className="p-5">
+      <Row className="g-4">
         {props.products.map((item) => (
-          <Col key={item.id}>
+          <Col xs={12} sm={6} xl={4} key={item.id}>
             <Card border="white">
               <Card.Body>
                 <Card.Title className="text-center">{item.title}</Card.Title>
