@@ -33,7 +33,7 @@ const Home = () => {
                 <tr>
                   <th>JUL-22</th>
                   <td>BRISTOW, VA</td>
-                  <td>JIGGY LUBE LIVE</td>
+                  <td>JIGGY LIVE</td>
                   <td>
                     <Button variant="info">BUY TICKETS</Button>
                   </td>

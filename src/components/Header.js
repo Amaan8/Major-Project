@@ -11,7 +11,7 @@ const Header = (props) => {
   const authCtx = useContext(AuthContext);
 
   const logoutHandler = () => {
-    cartCtx.items.map((item) => cartCtx.removeItem(item.id));
+    cartCtx.setItems([], 0);
     authCtx.logout();
   };
 
@@ -23,9 +23,14 @@ const Header = (props) => {
     setCartState(false);
   };
 
-  const numberOfCartItems = cartCtx.items.reduce((curNumber, item) => {
-    return curNumber + item.quantity;
-  }, 0);
+  let numberOfCartItems;
+  if (cartCtx.items) {
+    numberOfCartItems = cartCtx.items.reduce((curNumber, item) => {
+      return curNumber + item.quantity;
+    }, 0);
+  } else {
+    numberOfCartItems = 0;
+  }
 
   return (
     <>

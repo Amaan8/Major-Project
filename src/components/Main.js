@@ -21,6 +21,26 @@ const Main = (props) => {
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    async function addCartItem() {
+      const email = localStorage.getItem("email");
+      const user = email.substring(0, email.indexOf("."));
+      const response = await fetch(
+        `https://ecommerce-project-6271e-default-rtdb.firebaseio.com/cart-${user}.json`,
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            items: cartCtx.items,
+            totalAmount: cartCtx.totalAmount,
+          }),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    }
+    addCartItem();
+  }, [cartCtx.items, cartCtx.totalAmount]);
+
   const getItems = async () => {
     const emailId = localStorage.getItem("email");
     const user = emailId.substring(0, emailId.indexOf("."));
@@ -28,27 +48,13 @@ const Main = (props) => {
       `https://ecommerce-project-6271e-default-rtdb.firebaseio.com/cart-${user}.json`
     );
     const data = await res.json();
-    Object.values(data).map((item) => addItems(item));
+
+    data && data.items && cartCtx.setItems(data.items, data.totalAmount);
   };
 
   const clickHandler = (item) => {
     addItems(item);
-    addCartItem(item);
   };
-
-  async function addCartItem(item) {
-    const email = localStorage.getItem("email");
-    const user = email.substring(0, email.indexOf("."));
-    const response = await fetch(
-      `https://ecommerce-project-6271e-default-rtdb.firebaseio.com/cart-${user}.json`,
-      {
-        method: "POST",
-        body: JSON.stringify(item),
-      }
-    );
-    const data = await response.json();
-    console.log(data);
-  }
 
   return (
     <Container className="w-50 mx-auto py-5">
@@ -67,10 +73,7 @@ const Main = (props) => {
                 </Link>
                 <Card.Text className="d-flex justify-content-between align-items-center">
                   Rs {item.price}
-                  <Button
-                    variant="info"
-                    onClick={clickHandler.bind(null, item)}
-                  >
+                  <Button variant="info" onClick={() => clickHandler(item)}>
                     Add to Cart
                   </Button>
                 </Card.Text>

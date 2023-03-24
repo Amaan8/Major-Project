@@ -6,7 +6,7 @@ const About = () => {
       <h2 className="text-center py-4">About</h2>
       <div className="d-flex align-items-center w-75 mx-auto mb-4">
         <img
-          src="https://prasadyash2411.github.io/ecom-website/img/Band%20Members.png"
+          src="https://images.pexels.com/photos/796602/pexels-photo-796602.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt=""
           width="200px"
           height="200px"

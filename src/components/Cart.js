@@ -9,6 +9,11 @@ const Cart = (props) => {
     cartCtx.removeItem(item.id);
   };
 
+  const purchaseItems = () => {
+    cartCtx.setItems([], 0);
+    console.log("Thanks for Purchasing!");
+  };
+
   return (
     <>
       <Offcanvas
@@ -32,30 +37,33 @@ const Cart = (props) => {
               </tr>
             </thead>
             <tbody>
-              {cartCtx.items.map((item) => (
-                <tr key={item.id}>
-                  <td className="d-flex">
-                    <img src={item.imageUrl} alt="" width="80px" />
-                    <span className="ps-2">{item.title}</span>
-                  </td>
-                  <td>{item.price}</td>
-                  <td className="">
-                    <p className="text-center">{item.quantity}</p>
-                    <Button
-                      variant="danger"
-                      onClick={cartItemRemove.bind(null, item)}
-                    >
-                      Remove
-                    </Button>
-                  </td>
-                </tr>
-              ))}
+              {cartCtx.items &&
+                cartCtx.items.map((item) => (
+                  <tr key={item.id}>
+                    <td className="d-flex">
+                      <img src={item.imageUrl} alt="" width="80px" />
+                      <span className="ps-2">{item.title}</span>
+                    </td>
+                    <td>{item.price}</td>
+                    <td className="">
+                      <p className="text-center">{item.quantity}</p>
+                      <Button
+                        variant="danger"
+                        onClick={cartItemRemove.bind(null, item)}
+                      >
+                        Remove
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </Table>
           <p>
             <b>Total</b> Rs {cartCtx.totalAmount}
           </p>
-          <Button variant="info">PURCHASE</Button>
+          <Button variant="info" onClick={purchaseItems}>
+            PURCHASE
+          </Button>
         </Offcanvas.Body>
       </Offcanvas>
     </>
