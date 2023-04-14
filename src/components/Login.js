@@ -58,11 +58,16 @@ const Login = () => {
   };
 
   return (
-    <Container className="py-5">
+    <Container className="py-5 my-5">
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
-          <h3 className="text-center pb-3">{isLogin ? "Login" : "Sign Up"}</h3>
-          <Form onSubmit={submitHandler}>
+          <h3 className="text-center pb-3 fw-bold fs-1">
+            {isLogin ? "Login" : "Sign Up"}
+          </h3>
+          <Form
+            onSubmit={submitHandler}
+            className="bg-dark bg-gradient text-white p-4 rounded-5"
+          >
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
@@ -85,9 +90,9 @@ const Login = () => {
               {isLogin ? "Login" : "Create Account"}
             </Button>
             <Button
-              variant="white"
+              variant="dark"
               onClick={switchAuth}
-              className="col-6 offset-3 mt-2"
+              className="col-6 offset-3 mt-2 bg-transparent"
             >
               {isLogin ? "Create new account" : "Login with existing account"}
             </Button>

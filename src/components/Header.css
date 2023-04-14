@@ -1,0 +1,7 @@
+#nav a {
+  border-radius: 20px;
+}
+
+#nav a.active {
+  background-color: rgb(53, 49, 49);
+}

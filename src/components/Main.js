@@ -58,20 +58,23 @@ const Main = (props) => {
 
   return (
     <Container fluid className="p-5">
-      <Row className="g-4">
+      <h2 className="text-center mb-5 fw-bold">PRODUCTS</h2>
+      <Row className="g-4 justify-content-center">
         {props.products.map((item) => (
           <Col xs={12} sm={6} xl={4} key={item.id}>
-            <Card border="white">
-              <Card.Body>
-                <Card.Title className="text-center">{item.title}</Card.Title>
-                <Link to={`/store/${item.id}`}>
-                  <Card.Img
-                    variant="top"
-                    src={item.imageUrl}
-                    className="rounded-4 my-3"
-                  />
-                </Link>
-                <Card.Text className="d-flex justify-content-between align-items-center">
+            <Card border="white text-white">
+              <Link to={`/store/${item.id}`}>
+                <Card.Img
+                  variant="top"
+                  src={item.imageUrl}
+                  className="rounded-4"
+                />
+              </Link>
+              <Card.Body className="bg-dark bg-gradient rounded-4">
+                <Card.Title className="text-center pb-3 fs-4">
+                  {item.title}
+                </Card.Title>
+                <Card.Text className="d-flex justify-content-between align-items-center fs-5">
                   Rs {item.price}
                   <Button variant="info" onClick={() => clickHandler(item)}>
                     Add to Cart

@@ -81,7 +81,7 @@ function App() {
           </Route>
           <Route exact path="/store">
             {authCtx.isLoggedIn && <Main products={productsArr} />}
-            {!authCtx.isLoggedIn && <Redirect to="/login" />}
+            {!authCtx.isLoggedIn && <Login />}
           </Route>
           <Route path="/store/:productId">
             <Product products={productsArr} />

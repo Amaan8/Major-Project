@@ -50,7 +50,7 @@ const Product = (props) => {
               src={item.imageUrl}
               alt={item.title}
               width="100px"
-              className="m-1 zoom"
+              className="m-1 zoom rounded-4"
             />
           ))}
         </Col>
@@ -59,12 +59,12 @@ const Product = (props) => {
             src={product.imageUrl}
             alt={product.title}
             width="100%"
-            className="p-1 zoom"
+            className="p-1 rounded-5"
           />
         </Col>
-        <Col md={6}>
-          <h3 className="p-1 fs-1">{product.title}</h3>
-          <h4 className="p-1 mb-5">Rs {product.price}</h4>
+        <Col md={6} className="bg-dark bg-gradient text-white rounded-3 p-4">
+          <h3 className="fs-1 fw-bold">{product.title}</h3>
+          <h4 className="mb-5">Rs {product.price}</h4>
           <p>Description:</p>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque

@@ -1,45 +1,64 @@
-import { Container, Row, Col, Table, Button } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import "./Home.css";
 
 const Home = () => {
   return (
     <>
-      <div className="text-center bg-secondary">
-        <Button variant="secondary" className="border-info mb-5 fs-4">
-          Get our Latest Album
-        </Button>
+      <div
+        className="d-flex justify-content-center align-items-center"
+        id="back"
+      >
+        <Link to="/store">
+          <Button variant="info" className="fs-4 fw-bold" id="btn">
+            GET OUR LATEST PRODUCTS
+          </Button>
+        </Link>
       </div>
-      <h3 className="text-center py-3">TOURS</h3>
-      <Container fluid className="mb-4">
+      <h3 className="text-center mt-5 pb-3 fw-bold">TOURS</h3>
+      <Container fluid className="mb-5">
         <Row>
-          <Col lg={{ span: 6, offset: 3 }}>
-            <Table>
-              <tbody>
-                <tr>
-                  <th>JUL-16</th>
-                  <td>DETROIT,MI</td>
-                  <td>DTE ENERGY MUSIC THEATRE</td>
-                  <td>
-                    <Button variant="info">BUY TICKETS</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <th>JUL-19</th>
-                  <td>TORONTO,ON</td>
-                  <td>BUDWEISER STAGE</td>
-                  <td>
-                    <Button variant="info">BUY TICKETS</Button>
-                  </td>
-                </tr>
-                <tr>
-                  <th>JUL-22</th>
-                  <td>BRISTOW, VA</td>
-                  <td>JIGGY LIVE</td>
-                  <td>
-                    <Button variant="info">BUY TICKETS</Button>
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
+          <Col lg={{ span: 8, offset: 2 }} xl={{ span: 6, offset: 3 }}>
+            <Row className="border rounded-4 p-2 border-bottom-0">
+              <Col>JUL-16</Col>
+              <Col>DETROIT,MI</Col>
+              <Col className="d-none d-sm-block">DTE ENERGY MUSIC THEATRE</Col>
+              <Col>
+                <Button variant="info">BUY TICKETS</Button>
+              </Col>
+            </Row>
+            <Row className="border rounded-4 p-2 border-bottom-0">
+              <Col>JUL-19</Col>
+              <Col>TORONTO,ON</Col>
+              <Col className="d-none d-sm-block">BUDWEISER STAGE</Col>
+              <Col>
+                <Button variant="info">BUY TICKETS</Button>
+              </Col>
+            </Row>
+            <Row className="border rounded-4 p-2">
+              <Col>JUL-22</Col>
+              <Col>BRISTOW, VA</Col>
+              <Col className="d-none d-sm-block">JIGGY LIVE</Col>
+              <Col>
+                <Button variant="info">BUY TICKETS</Button>
+              </Col>
+            </Row>
+            <Row className="border rounded-4 p-2">
+              <Col>JUL-25</Col>
+              <Col>DETROIT,MI</Col>
+              <Col className="d-none d-sm-block">MT Music Club</Col>
+              <Col>
+                <Button variant="info">BUY TICKETS</Button>
+              </Col>
+            </Row>
+            <Row className="border rounded-4 p-2">
+              <Col>JUL-28</Col>
+              <Col>TORONTO,ON</Col>
+              <Col className="d-none d-sm-block">The Palace</Col>
+              <Col>
+                <Button variant="info">BUY TICKETS</Button>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Container>
